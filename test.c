@@ -50,18 +50,16 @@ char	*ft_join(char *statics, char *s)
 	}
 	joined[i + j] = '\0';
 	free (statics);
-	free (s);
+	//free (s);
 	return (joined);
 }
 
 char	*ft_read(int fd, int bufsize)
 {
-	char			*s;
-	char			*temp;
-	static char		*statics;
+	static char		*static;
 	size_t			templen;
 
-	s = malloc(bufsize + 1);
+	s = malloc(bufsize);
 	read(fd, s, bufsize);
 	statics = ft_join(statics, s);
 	return (s);
@@ -77,6 +75,9 @@ int main(void)
 	file = fopen("test.txt", "r");
 	fd = fileno(file);
 	i = 0;
+	s = ft_read(fd, 4);
+	printf("%s\n", s);
+	free(s);
 	s = ft_read(fd, 4);
 	printf("%s\n", s);
 	free(s);
