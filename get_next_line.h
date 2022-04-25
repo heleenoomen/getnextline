@@ -6,28 +6,23 @@
 # include<unistd.h>
 
 # ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 1	
+#  define BUFFER_SIZE 1000000
 # endif
 
 typedef struct s_struct
 {
-	char	*temp;
-	char	*tempnew;
+	char	*newstatic;
 	char	*line;
 	size_t	bytesread;
-	char	*remtemp;
-	char	*remrem;
 }			t_struct;
 
 int		ft_strchr_gnl(const char *s, char c);
 size_t	ft_strlen_gnl(const char *s);
-//void	ft_strncpy_gnl(char *dst, const char *src, size_t n);
-//void	*ft_calloc(size_t count, size_t size);
-void	ft_init(t_struct *t);
-void	read_to_temp(t_struct *t, int fd);
 size_t	ft_strlen_newline(char *s);
-void	split_line(char *remainder, t_struct *t);
-void	ft_strncat_gnl(char *dst, const char *src1, const char *src2, size_t n);
-
+void	ft_strncpy_gnl(char *dst, const char *src, size_t n);
+void	ft_init(t_struct *t);
+char	*ft_error(t_struct *t, char *buffer, char *staticline);
+char	*read_to_static(int fd, char *staticline, t_struct *t);
+void	split_static(char *staticline, t_struct *t);
 
 #endif
