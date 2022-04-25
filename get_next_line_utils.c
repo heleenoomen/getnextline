@@ -30,6 +30,20 @@ size_t	ft_strlen_gnl(const char *s)
 	return (len);
 }
 
+size_t	ft_strlen_newline(char *s)
+{
+	size_t len;
+	
+	if (s == NULL)
+		return (0);
+	len = 0;
+	while (s[len] && s[len] != '\n')
+		len++;
+	if (s[len] == '\n')
+		len++;
+	return (len);
+}
+
 void	ft_strncat_gnl(char *dst, const char *src1, const char *src2, size_t n)
 {
 	size_t	i;
@@ -53,41 +67,3 @@ void	ft_strncat_gnl(char *dst, const char *src1, const char *src2, size_t n)
 	}
 	dst[i + j] = '\0';
 }
-
-// void	ft_strncpy_gnl(char *dst, const char *src, size_t n)
-// {
-// 	size_t	i;
-
-// 	if (src == NULL)
-// 	{
-// 		dst[0] = '\0';
-// 		return ;
-// 	}
-// 	i = 0;
-// 	while (i < n && src[i])
-// 	{
-// 		dst[i] = src[i];
-// 		i++;
-// 	}
-// 	if (i <= n)
-// 		dst[i] = '\0';
-// }
-
-// void	*ft_calloc(size_t count, size_t size)
-// {
-// 	size_t	bytes;
-// 	char	*ptr;
-
-// 	if (count && __SIZE_MAX__ / count < size)
-// 		return (NULL);
-// 	bytes = count * size;
-// 	ptr = malloc(bytes);
-// 	if (ptr == NULL)
-// 		return (NULL);
-// 	while (bytes)
-// 	{
-// 		ptr[bytes - 1] = '\0';
-// 		bytes--;
-// 	}
-// 	return ((void *) ptr);
-// }
