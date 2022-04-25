@@ -27,29 +27,14 @@ void	read_to_temp(t_struct *t, int fd)
 	buffer = malloc(BUFFER_SIZE);
 	if (buffer == NULL)
 		ft_error(t, buffer);
-	// {
-	// 	free(t->temp);
-	// 	t->temp == NULL;
-	// 	return ;
-	// }
 	t->bytesread = read(fd, buffer, BUFFER_SIZE);
 	if (t->bytesread == -1)
 		ft_error(t, buffer);
-	// {
-	// 	free(t->temp);
-	// 	t->temp == NULL;
-	// 	return ;
-	// }
 	lentmp = ft_strlen_gnl(t->temp);
 	lentmp_new = lentmp + t->bytesread;
 	t->tempnew = malloc(lentmp_new + 1);
 	if (t->tempnew == NULL)
 		ft_error(t, buffer);
-	// {
-	// 	free(t->temp);
-	// 	t->temp == NULL;
-	// 	return ;
-	// }
 	ft_strncat_gnl(t->tempnew, t->temp, buffer, lentmp_new);
 	free(t->temp);
 	free(buffer);
@@ -78,32 +63,17 @@ void	split_line(char *remainder, t_struct *t)
 	size_t	remlenrm;
 	size_t	remlentmp;
 
-	//printf("\nremainder = %s\n", remainder);
 	lenrm = ft_strlen_newline(remainder);
-	//printf("lenrem = %zu\n", lenrm);
-	//printf("t->temp = %s\n", t->temp);
 	lentmp = ft_strlen_newline(t->temp);
-	//printf("lentmp = %zu\n", lentmp);
 	linelen = lenrm + lentmp;
-	//printf("linelen = %zu\n", linelen);
 	if (!linelen)
 		return ;
 	t->line = malloc(linelen + 1); 
 	if (t->line == NULL)
 		return ;
 	ft_strncat_gnl(t->line, remainder, t->temp, linelen);
-	//ft_strncpy_gnl(t->line, remainder, lenrm);
-	//ft_strncpy_gnl(t->line + lenrm, t->temp, lentmp);
 	remlenrm = ft_strlen_gnl(remainder) - lenrm;
-	//printf("remlenrm = %zu\n", remlenrm);
 	remlentmp = ft_strlen_gnl(t->temp) - lentmp;
-	//printf("remlentmp = %zu\n", remlentmp);
-	//if (lenrm)
-	//ft_strncat_gnl(remainder, remainder + lenrm, t->temp + lentmp, remlenrm + remlentmp);
-	//ft_strncpy_gnl(remainder, remainder + lenrm, remlenrm);
-	//if (lentmp)
-	//ft_strncpy_gnl(remainder + remlenrm, t->temp + lentmp, remlentmp);
-	//printf("remainder = %s\n", remainder);
 	t->remtemp = t->temp + lentmp;
 	t->remrem = remainder + lenrm;
 	ft_strncat_gnl(remainder, t->remrem, t->remtemp, remlenrm + remlentmp);
