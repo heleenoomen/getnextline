@@ -1,4 +1,4 @@
-#include"get_next_line.h"
+#include"ll.h"
 
 //counts chars in a string of size n until 0 terminator or newline
 //includes newline in len

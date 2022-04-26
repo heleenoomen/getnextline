@@ -1,10 +1,4 @@
-# include<stdio.h>
-# include<stdlib.h>
-# include<unistd.h>
-
-# ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 1000000
-# endif
+# include"ll.h"
 
 t_list	*make_node(int fd, t_list *node)
 {
