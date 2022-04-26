@@ -13,7 +13,7 @@ typedef struct s_list
 {
 	char			*buffer;
 	size_t			bytes_read;
-	size_t			fullnodes_in_lst;
+	size_t			nodes_in_lst;
 	struct s_list	*next;
 }					t_list;
 
