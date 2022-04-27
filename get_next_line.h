@@ -9,6 +9,8 @@
 #  define BUFFER_SIZE 1000000
 # endif
 
+# define FD_MAX 1024
+
 typedef struct s_struct
 {
 	char	*newstatic;

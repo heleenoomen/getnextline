@@ -1,4 +1,16 @@
-#include"get_next_line.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   get_next_line_bonus.c                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: hoomen <hoomen@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/04/27 18:23:46 by hoomen            #+#    #+#             */
+/*   Updated: 2022/04/27 18:46:32 by hoomen           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include"get_next_line_bonus.h"
 
 void	ft_init(t_struct *t)
 {
@@ -64,40 +76,48 @@ void	split_static(char *staticline, t_struct *t)
 
 char	*get_next_line(int fd)
 {
-	static char	*staticline;
+	static char	*staticlines[FD_MAX];
 	t_struct	t;
 	
 	if (BUFFER_SIZE < 1 || fd < 0 || fd > FD_MAX)
 		return (NULL);
 	ft_init(&t);
-	if (staticline == NULL)
-		staticline = read_to_static(fd, staticline, &t);
-	while (staticline != NULL && !ft_strchr_gnl(staticline, '\n') && t.bytesread)
-		staticline = read_to_static(fd, staticline, &t);
-	if (staticline == NULL)
+	if (staticlines[fd] == NULL)
+		staticlines[fd] = read_to_static(fd, staticlines[fd], &t);
+	while (staticlines[fd] != NULL && !ft_strchr_gnl(staticlines[fd], '\n') && t.bytesread)
+		staticlines[fd] = read_to_static(fd, staticlines[fd], &t);
+	if (staticlines[fd] == NULL)
 		return (NULL);
-	split_static(staticline, &t);
-	free(staticline);
-	staticline = t.newstatic;
+	split_static(staticlines[fd], &t);
+	free(staticlines[fd]);
+	staticlines[fd] = t.newstatic;
 	return (t.line);
 }
 
 // int main(void)
 // {
 // 	FILE	*file;
+// 	FILE	*file2;
 // 	char	*line;
 // 	int		fd;
+// 	int		fd2;
 // 	int		i;
 
 // 	file = fopen("empty.txt", "r");
+// 	file2 = fopen("text.txt", "r");
 // 	fd = fileno(file);
+// 	fd2 = fileno(file2);
 // 	i = 0;
 // 	while(i < 10)
 // 	{
 // 		line = get_next_line(fd);
 // 		printf("line = %s", line);
+// 		free(line);
+// 		line = get_next_line(fd2);
+// 		printf("line = %s", line);
+// 		free(line);
 // 		i++;
 // 	}
-// 	free(line);
 // 	fclose(file);
 // }
+
