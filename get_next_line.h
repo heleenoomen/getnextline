@@ -21,8 +21,9 @@ size_t	ft_strlen_gnl(const char *s);
 size_t	ft_strlen_newline(char *s);
 void	ft_strncpy_gnl(char *dst, const char *src, size_t n);
 void	ft_init(t_struct *t);
-char	*ft_error(t_struct *t, char *buffer, char *staticline);
+char	*ft_error(char *buffer, char *staticline);
 char	*read_to_static(int fd, char *staticline, t_struct *t);
 void	split_static(char *staticline, t_struct *t);
+char	*get_next_line(int fd);
 
 #endif

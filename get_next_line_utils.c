@@ -49,7 +49,7 @@ void	ft_strncpy_gnl(char *dst, const char *src, size_t n)
 	size_t	i;
 
 	if (src == NULL)
-		src = '\0';
+		src = "\0";
 	i = 0;
 	while (i < n)
 	{
